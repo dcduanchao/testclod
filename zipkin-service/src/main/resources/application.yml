@@ -1,0 +1,41 @@
+
+server:
+  port: 9411
+
+
+spring:
+  application:
+    name: zipkin-service
+  rabbitmq:
+    host: 39.105.91.69
+    username: admin
+    password: 123456
+    port: 5672
+
+
+
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  # 关闭自动配置启用所有请求得检测 否则进入zipkin-ui报错
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+
+
+
+

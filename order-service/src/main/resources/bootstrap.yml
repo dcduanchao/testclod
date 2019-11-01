@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: order-service
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+    config:
+      discovery:
+        #注意 需要加application.name
+        enabled: true
+        service-id: config-service
+        ###########
+#      uri: http://localhost:7002/
+#      name: order-service
+
+  ###############
+  #两种配置查找
+
+#      profile: dev
+  profiles:
+    active: dev
+###################
+
+  rabbitmq:
+    host: 39.105.91.69
+    username: admin
+    password: 123456
+    port: 5672
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+
+
+
+

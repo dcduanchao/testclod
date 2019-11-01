@@ -1,0 +1,19 @@
+server:
+  port: 7001
+
+spring:
+#git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/dcduanchao/properties.git
+          username: dcduanchao
+          password: dc673836112
+          #默认分支 可省略默认 master
+          default-label: master
+#          搜索文件夹地址
+#          search-paths: peer1
+
+
+

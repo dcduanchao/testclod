@@ -1,0 +1,48 @@
+server:
+  port: 5000
+
+
+spring:
+  application:
+    name: admin-service
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: admin
+#监控错误发送邮件
+  mail:
+    host: smtp.163.com
+    username: duanchao0320@163.com
+    password: Dc15210796683
+  boot:
+   admin:
+    notify:
+     mail:
+      to: 673836112@qq.com,duanchao0320@163.com
+      from: duanchao0320@163.com
+
+
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  instance:
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+
+
+#management.security.enabled 过时下面代替
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  file: ”logs/admin-service.log"

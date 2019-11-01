@@ -1,0 +1,31 @@
+server:
+  port: 8761
+
+management:
+    server:
+      port: 9001
+      #开起监控详情
+    endpoint:
+      health:
+        show-details: always
+        #boot2.0 请求发生变化http://localhost:9001/actuator/XX
+        #boot2.0 Actuator只暴露health和info
+      web:
+        exposure:
+          include: "*"
+
+
+
+
+
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    service-url:
+      defaultZone: http://peer2:8762/eureka/
+
+
+
+
+

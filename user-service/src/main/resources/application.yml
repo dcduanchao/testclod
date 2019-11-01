@@ -1,0 +1,59 @@
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://39.105.91.69:3306/dc_user?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  zipkin:
+#http追踪
+#    base-url: http://39.105.91.69:9411
+    #消息追踪
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1.0
+    web:
+      client:
+        enabled: true
+  rabbitmq:
+    host: 39.105.91.69
+    username: admin
+    password: 123456
+    port: 5672
+    listener:
+      direct:
+        retry:
+          enabled: true
+      simple:
+        retry:
+          enabled: true
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+
+#boot2.0 ????????http://localhost:9001/actuator/XX
+#boot2.0 Actuator????health??info
+#?????????
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+logging:
+  level:
+    com.dc.user.mapper: debug

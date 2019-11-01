@@ -1,0 +1,12 @@
+server:
+  port: 7002
+
+spring:
+#本地配置
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared

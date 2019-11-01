@@ -1,0 +1,96 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="mysql" targetRuntime="MyBatis3"  >
+        <!-- 当表名或者字段名为SQL关键字的时候，可以设置该属性为true，MBG会自动给表名或字段名添加**分隔符**。 -->
+        <property name="autoDelimitKeywords" value="true" />
+        <property name="javaFileEncoding" value="UTF-8" />
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+        <!-- 格式化xml -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+        <!-- 生成的pojo，将implements Serializable -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="Where" />
+        </plugin>
+        <plugin type="com.dc.sqlgenerator.plugin.RenameExampleAndPrimaryKeyPlugin" />
+        <plugin type="com.dc.sqlgenerator.plugin.MysqlPagingPlugin"></plugin>
+        <!-- 		<plugin type="org.mybatis.generator.plugin.ext.impl.EntityNullPlugin"></plugin>-->
+
+        <plugin type="org.mybatis.generator.plugins.LombokPlugin">
+            <property name="hasLombok" value="true"/>
+        </plugin>
+        <!--<plugin type="com.dc.sqlgenerator.plugin.LombokPlugin1"></plugin>-->
+
+        <commentGenerator>
+            <!-- type="org.mybatis.generator.plugin.ext.impl.CommentExtGenerator"> -->
+            <!--阻止生成注释  false为生成-->
+            <property name="suppressAllComments" value="true" />
+            <!--<property name="javaFileEncoding" value="UTF-8" />-->
+            <!--阻止生成日期  false为生成-->
+            <!--<property name="suppressDate" value="false" />-->
+            <!--<property name="addRemarkComments" value="true" />-->
+        </commentGenerator>
+
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://39.105.91.69:3306/dc_user?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT"
+                        userId="root" password="123456">
+            <property name="useInformationSchema" value="true" />
+            <property name="remarksReporting" value="true" />
+        </jdbcConnection>
+
+        <!-- java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl； 注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和
+            NUMERIC数据类型； -->
+        <javaTypeResolver
+                type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+
+        <!-- 生成模型的包名和位置 java实体类 -->
+        <javaModelGenerator
+                targetPackage="com.dc.demo1.entity" targetProject="E:\testproject\springcloudtest\demo\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="com.dc.demo1.mapper"
+                         targetProject="E:\testproject\springcloudtest\demo\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.dc.demo1.mapper" targetProject="E:\testproject\springcloudtest\demo\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+
+        <!--<table tableName="user_info" domainObjectName="UserInfo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+
+               <!--selectByExampleQueryId="false">-->
+            <!--<property name="selectAll" value=""></property>-->
+            <!--<generatedKey column="id" sqlStatement="mysql" identity="true"></generatedKey>-->
+        <!--</table>-->
+
+        <table tableName="user_info" domainObjectName="UserInfo">
+            <generatedKey column="id" sqlStatement="mysql" identity="true"></generatedKey>
+        </table>
+
+    </context>
+
+
+</generatorConfiguration>
+
